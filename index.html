@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Document</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenMax.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.4/TweenLite.min.js"></script> -->
+<script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/animation.gsap.js"></script>
+
+</head>
+<body>
+
+<style>
+.panel {
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+.panel.blue {
+	background: url('images/scroll-01.gif') no-repeat top center;
+	background-size: cover;
+	top: 0;
+}
+
+.panel.turqoise {
+	background: url('images/scroll-02.gif') no-repeat top center;
+	background-size: cover;
+	top: 100%;
+}
+.panel.green {
+	background: url('images/scroll-03.gif') no-repeat top center;
+	background-size: cover;
+	top: 200%;
+}
+.panel.bordeaux {
+	background: url('images/scroll-04.gif') no-repeat top center;
+	background-size: cover;
+	top: 300%;
+}
+</style>
+
+<section class="panel blue">
+	<b>ONE</b>
+</section>
+<section class="panel turqoise">
+	<b>TWO</b>
+</section>
+<section class="panel green">
+	<b>THREE</b>
+</section>
+<section class="panel bordeaux">
+	<b>FOUR</b>
+</section>
+
+<script>
+$(function () { // wait for document ready
+	// init
+	var controller = new ScrollMagic.Controller({
+		globalSceneOptions: {
+			triggerHook: 'onLeave'
+		}
+	});
+
+	// get all slides
+	var slides = document.querySelectorAll("section.panel");
+
+	// create scene for every slide
+	for (var i = 0 ; i < slides.length; i++) {
+		new ScrollMagic.Scene({
+			triggerElement: slides[i]
+		})
+		.setPin(slides[i])
+		.addIndicators() // add indicators (requires plugin)
+		.addTo(controller);
+	}
+});
+</script>
+	
+</body>
+</html>
